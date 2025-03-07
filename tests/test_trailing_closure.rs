@@ -61,9 +61,11 @@ fn test_closure_with_parameters() {
         f(42, "test")
     }
     
-    let result = with_block! {higher_order() {
-        |num: i32, text: &str| format!("Number: {}, Text: {}", num, text)
-    }};
+    let result = with_block! {
+        higher_order() {
+            |num: i32, text: &str| format!("Number: {}, Text: {}", num, text)
+        }
+    };
     
     assert_eq!(result, "Number: 42, Text: test");
 }
@@ -74,9 +76,11 @@ fn test_closure_with_parameters_no_types() {
         f(42, "test")
     }
     
-    let result = with_block! {higher_order() {
-        |num, text| format!("Number: {}, Text: {}", num, text)
-    }};
+    let result = with_block! {
+        higher_order() {
+            |num, text| format!("Number: {}, Text: {}", num, text)
+        }
+    };
     
     assert_eq!(result, "Number: 42, Text: test");
 }
