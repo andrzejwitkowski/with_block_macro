@@ -107,7 +107,8 @@ pub fn with_block(input: TokenStream) -> TokenStream {
                     });
                     
                     // Extract the rest of the statement after the parameter declaration
-                    let rest_of_stmt = &stmt_str[start_idx + end_idx + 2..];
+                    let mut rest_of_stmt = &stmt_str[start_idx + end_idx + 2..];
+                                        
                     if !rest_of_stmt.trim().is_empty() {
                         // If there's code on the same line after the params, parse it
                         if let Ok(expr) = syn::parse_str::<syn::Expr>(rest_of_stmt) {
