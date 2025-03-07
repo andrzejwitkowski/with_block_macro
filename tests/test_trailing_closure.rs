@@ -53,8 +53,26 @@ fn test_with_arguments() {
     
     assert_eq!(value, 42);
 }
-// Add this test to your existing tests
 
+#[test]
+fn test_method_call_with_two_parameters() {
+    fn function_with_args(x: i32, y: i32, f: impl FnOnce() -> ()) {
+        assert_eq!(x, 10);
+        assert_eq!(y, 20);
+        f();
+    }
+    
+    let mut value = 0;
+    
+    // Fix: Remove the parentheses from the macro invocation
+    with_block! {function_with_args(10, 20) {
+        value = 42;
+    }}
+    
+    assert_eq!(value, 42);
+}
+
+// Add this test to your existing tests
 #[test]
 fn test_closure_with_parameters() {
     fn higher_order(f: impl Fn(i32, &str) -> String) -> String {
